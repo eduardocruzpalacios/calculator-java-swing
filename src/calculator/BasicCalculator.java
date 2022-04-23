@@ -211,18 +211,15 @@ public class BasicCalculator {
 		btnIsEven.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				float num;
-
 				if (number1.length() == 0) {
-					num = 0f;
+					textField.setText("Hi, no number here!");
 				} else {
-					num = Float.parseFloat(number1);
-				}
-
-				if (num % 2 == 0) {
-					textField.setText("Even");
-				} else {
-					textField.setText("Odd");
+					float num = Float.parseFloat(number1);
+					if (num % 2 == 0) {
+						textField.setText("Even");
+					} else {
+						textField.setText("Odd");
+					}
 				}
 
 				for (int i = 0; i < jButtonsNumbers.length; i++) {
@@ -234,7 +231,6 @@ public class BasicCalculator {
 				btnCalculate.setEnabled(false);
 				btnIsEven.setEnabled(false);
 			}
-
 		});
 
 		// LOGIC: C BUTTON
