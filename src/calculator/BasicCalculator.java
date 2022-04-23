@@ -256,7 +256,7 @@ public class BasicCalculator {
 		});
 	}
 
-	public void setActionListenerToJButtonNumber(JButton jButton) {
+	private void setActionListenerToJButtonNumber(JButton jButton) {
 		jButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -271,7 +271,7 @@ public class BasicCalculator {
 		});
 	}
 
-	public void setActionListenerToJButtonOperator(JButton jButton) {
+	private void setActionListenerToJButtonOperator(JButton jButton) {
 		jButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
