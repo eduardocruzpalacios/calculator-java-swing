@@ -139,7 +139,7 @@ public class BasicCalculator {
 		btnCalculate.setBounds(115, 500, 122, 59);
 		frame.getContentPane().add(btnCalculate);
 
-		btnIsEven = new JButton("Par");
+		btnIsEven = new JButton("even?");
 		btnIsEven.setBounds(115, 141, 89, 59);
 		frame.getContentPane().add(btnIsEven);
 
