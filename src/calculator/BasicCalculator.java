@@ -162,6 +162,51 @@ public class BasicCalculator {
 		for (int i = 0; i < jButtonsOperators.length; i++) {
 			setActionListenerToJButtonOperator(jButtonsOperators[i]);
 		}
+
+		// LOGIC: = BUTTON
+
+		btnCalculate.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (number1.length() == 0 || number2.length() == 0) {
+					textField.setText("error");
+					btnIsEven.setEnabled(false);
+				} else if (number2.equals("0")) {
+					textField.setText("Indetermination");
+				} else {
+					float num1 = Float.parseFloat(number1);
+					float num2 = Float.parseFloat(number2);
+					float result = 0f;
+					switch (operator) {
+					case "+":
+						result = num1 + num2;
+						break;
+					case "-":
+						result = num1 - num2;
+						break;
+					case "*":
+						result = num1 * num2;
+						break;
+					case "/":
+						result = num1 / num2;
+						break;
+					default:
+						break;
+					}
+					textField.setText(String.valueOf(result));
+				}
+
+				for (int i = 0; i < jButtonsNumbers.length; i++) {
+					jButtonsNumbers[i].setEnabled(false);
+					if (i < jButtonsOperators.length) {
+						jButtonsOperators[i].setEnabled(false);
+					}
+				}
+
+				btnCalculate.setEnabled(false);
+			}
+		});
 	}
 
 	public void setActionListenerToJButtonNumber(JButton jButton) {
@@ -184,6 +229,7 @@ public class BasicCalculator {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				operator = jButton.getText().toString();
+
 				if (number1.length() == 0) {
 					textField.setText("error");
 					btn0.setEnabled(false);
@@ -201,6 +247,7 @@ public class BasicCalculator {
 					textField.setText("");
 					operationIsDefined = true;
 				}
+
 				btnIsEven.setEnabled(false);
 				btnSum.setEnabled(false);
 				btnSubtract.setEnabled(false);
