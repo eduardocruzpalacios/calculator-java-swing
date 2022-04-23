@@ -42,21 +42,21 @@ public class BasicCalculator {
 	private JButton btn8;
 	private JButton btn9;
 
-	private JButton btnSumar;
-	private JButton btnRestar;
-	private JButton btnMultiplicar;
-	private JButton btnDividir;
+	private JButton btnSum;
+	private JButton btnSubtract;
+	private JButton btnMultiply;
+	private JButton btnDivide;
 
-	private JButton btnIgual;
+	private JButton btnCalculate;
 
-	private JButton btnPar;
+	private JButton btnIsEven;
 
 	private JButton btnC;
 
 	// LOGIC
-	private String operando1 = "";
-	private String operando2 = "";
-	private boolean operacionDefinida = false;
+	private String number1 = "";
+	private String number2 = "";
+	private boolean operationIsDefined = false;
 
 	/**
 	 * @wbp.parser.entryPoint
@@ -118,29 +118,29 @@ public class BasicCalculator {
 		btn0.setBounds(49, 500, 56, 59);
 		frame.getContentPane().add(btn0);
 
-		btnSumar = new JButton("+");
-		btnSumar.setBounds(384, 231, 56, 59);
-		frame.getContentPane().add(btnSumar);
+		btnSum = new JButton("+");
+		btnSum.setBounds(384, 231, 56, 59);
+		frame.getContentPane().add(btnSum);
 
-		btnRestar = new JButton("-");
-		btnRestar.setBounds(384, 320, 56, 59);
-		frame.getContentPane().add(btnRestar);
+		btnSubtract = new JButton("-");
+		btnSubtract.setBounds(384, 320, 56, 59);
+		frame.getContentPane().add(btnSubtract);
 
-		btnMultiplicar = new JButton("*");
-		btnMultiplicar.setBounds(384, 411, 56, 59);
-		frame.getContentPane().add(btnMultiplicar);
+		btnMultiply = new JButton("*");
+		btnMultiply.setBounds(384, 411, 56, 59);
+		frame.getContentPane().add(btnMultiply);
 
-		btnDividir = new JButton("/");
-		btnDividir.setBounds(384, 500, 56, 59);
-		frame.getContentPane().add(btnDividir);
+		btnDivide = new JButton("/");
+		btnDivide.setBounds(384, 500, 56, 59);
+		frame.getContentPane().add(btnDivide);
 
-		btnIgual = new JButton("=");
-		btnIgual.setBounds(115, 500, 122, 59);
-		frame.getContentPane().add(btnIgual);
+		btnCalculate = new JButton("=");
+		btnCalculate.setBounds(115, 500, 122, 59);
+		frame.getContentPane().add(btnCalculate);
 
-		btnPar = new JButton("Par");
-		btnPar.setBounds(115, 141, 89, 59);
-		frame.getContentPane().add(btnPar);
+		btnIsEven = new JButton("Par");
+		btnIsEven.setBounds(115, 141, 89, 59);
+		frame.getContentPane().add(btnIsEven);
 
 		btnC = new JButton("C");
 		btnC.setBounds(49, 141, 56, 59);
@@ -148,23 +148,23 @@ public class BasicCalculator {
 
 		// LOGIC: 0-9 NUMBER BUTTONS
 
-		JButton[] jButtonsNumero = { btn0, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9 };
+		JButton[] jButtonsNumbers = { btn0, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9 };
 
-		for (int i = 0; i < jButtonsNumero.length; i++) {
-			setActionListenerToJButtonNumero(jButtonsNumero[i]);
+		for (int i = 0; i < jButtonsNumbers.length; i++) {
+			setActionListenerToJButtonNumber(jButtonsNumbers[i]);
 		}
 	}
 
-	public void setActionListenerToJButtonNumero(JButton jButton) {
+	public void setActionListenerToJButtonNumber(JButton jButton) {
 		jButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (!operacionDefinida) {
-					operando1 += jButton.getText().toString();
-					textField.setText(operando1);
+				if (!operationIsDefined) {
+					number1 += jButton.getText().toString();
+					textField.setText(number1);
 				} else {
-					operando2 += jButton.getText().toString();
-					textField.setText(operando2);
+					number2 += jButton.getText().toString();
+					textField.setText(number2);
 				}
 			}
 		});
