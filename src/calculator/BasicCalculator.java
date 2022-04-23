@@ -57,6 +57,7 @@ public class BasicCalculator {
 	private String number1 = "";
 	private String number2 = "";
 	private boolean operationIsDefined = false;
+	private String operator = "";
 
 	/**
 	 * @wbp.parser.entryPoint
@@ -153,6 +154,14 @@ public class BasicCalculator {
 		for (int i = 0; i < jButtonsNumbers.length; i++) {
 			setActionListenerToJButtonNumber(jButtonsNumbers[i]);
 		}
+
+		// LOGIC: OPERATOR BUTTONS
+
+		JButton[] jButtonsOperators = { btnSum, btnSubtract, btnMultiply, btnDivide };
+
+		for (int i = 0; i < jButtonsOperators.length; i++) {
+			setActionListenerToJButtonOperator(jButtonsOperators[i]);
+		}
 	}
 
 	public void setActionListenerToJButtonNumber(JButton jButton) {
@@ -167,6 +176,37 @@ public class BasicCalculator {
 					textField.setText(number2);
 				}
 			}
+		});
+	}
+
+	public void setActionListenerToJButtonOperator(JButton jButton) {
+		jButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				operator = jButton.getText().toString();
+				if (number1.length() == 0) {
+					textField.setText("error");
+					btn0.setEnabled(false);
+					btn1.setEnabled(false);
+					btn2.setEnabled(false);
+					btn3.setEnabled(false);
+					btn4.setEnabled(false);
+					btn5.setEnabled(false);
+					btn6.setEnabled(false);
+					btn7.setEnabled(false);
+					btn8.setEnabled(false);
+					btn9.setEnabled(false);
+					btnCalculate.setEnabled(false);
+				} else {
+					textField.setText("");
+					operationIsDefined = true;
+				}
+				btnIsEven.setEnabled(false);
+				btnSum.setEnabled(false);
+				btnSubtract.setEnabled(false);
+				btnMultiply.setEnabled(false);
+				btnDivide.setEnabled(false);
+			};
 		});
 	}
 
