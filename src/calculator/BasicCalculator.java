@@ -236,6 +236,28 @@ public class BasicCalculator {
 			}
 
 		});
+
+		// LOGIC: C BUTTON
+		btnC.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				textField.setText("");
+
+				for (int i = 0; i < jButtonsNumbers.length; i++) {
+					jButtonsNumbers[i].setEnabled(true);
+				}
+				for (int i = 0; i < jButtonsOperators.length; i++) {
+					jButtonsOperators[i].setEnabled(true);
+				}
+				btnCalculate.setEnabled(true);
+				btnIsEven.setEnabled(true);
+
+				number1 = "";
+				number2 = "";
+				operator = "";
+				operationIsDefined = false;
+			}
+		});
 	}
 
 	public void setActionListenerToJButtonNumber(JButton jButton) {
