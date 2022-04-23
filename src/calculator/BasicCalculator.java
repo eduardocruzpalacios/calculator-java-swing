@@ -1,6 +1,8 @@
 package calculator;
 
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -24,6 +26,7 @@ public class BasicCalculator {
 		});
 	}
 
+	// VIEW
 	private JFrame frame;
 
 	private JTextField textField;
@@ -50,10 +53,17 @@ public class BasicCalculator {
 
 	private JButton btnC;
 
+	// LOGIC
+	private String operando1 = "";
+	private String operando2 = "";
+	private boolean operacionDefinida = false;
+
 	/**
 	 * @wbp.parser.entryPoint
 	 */
 	private void initialize() {
+
+		// VIEW
 
 		frame = new JFrame();
 		frame.setBounds(100, 100, 522, 622);
@@ -136,6 +146,28 @@ public class BasicCalculator {
 		btnC.setBounds(49, 141, 56, 59);
 		frame.getContentPane().add(btnC);
 
+		// LOGIC: 0-9 NUMBER BUTTONS
+
+		JButton[] jButtonsNumero = { btn0, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9 };
+
+		for (int i = 0; i < jButtonsNumero.length; i++) {
+			setActionListenerToJButtonNumero(jButtonsNumero[i]);
+		}
+	}
+
+	public void setActionListenerToJButtonNumero(JButton jButton) {
+		jButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (!operacionDefinida) {
+					operando1 += jButton.getText().toString();
+					textField.setText(operando1);
+				} else {
+					operando2 += jButton.getText().toString();
+					textField.setText(operando2);
+				}
+			}
+		});
 	}
 
 }
