@@ -166,7 +166,6 @@ public class BasicCalculator {
 		// LOGIC: = BUTTON
 
 		btnCalculate.addActionListener(new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (number1.length() == 0 || number2.length() == 0) {
@@ -206,6 +205,36 @@ public class BasicCalculator {
 
 				btnCalculate.setEnabled(false);
 			}
+		});
+
+		// LOGIC: even? BUTTON
+		btnIsEven.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				float num;
+
+				if (number1.length() == 0) {
+					num = 0f;
+				} else {
+					num = Float.parseFloat(number1);
+				}
+
+				if (num % 2 == 0) {
+					textField.setText("Even");
+				} else {
+					textField.setText("Odd");
+				}
+
+				for (int i = 0; i < jButtonsNumbers.length; i++) {
+					jButtonsNumbers[i].setEnabled(false);
+				}
+				for (int i = 0; i < jButtonsOperators.length; i++) {
+					jButtonsOperators[i].setEnabled(false);
+				}
+				btnCalculate.setEnabled(false);
+				btnIsEven.setEnabled(false);
+			}
+
 		});
 	}
 
