@@ -26,7 +26,6 @@ public class BasicCalculator {
 		});
 	}
 
-	// VIEW
 	private JFrame frame;
 
 	private JTextField textField;
@@ -53,7 +52,6 @@ public class BasicCalculator {
 
 	private JButton btnC;
 
-	// LOGIC
 	private String number1 = "";
 	private String number2 = "";
 	private boolean operationIsDefined = false;
