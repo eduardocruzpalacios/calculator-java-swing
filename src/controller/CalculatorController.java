@@ -1,4 +1,4 @@
-package calculator;
+package controller;
 
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
@@ -10,9 +10,9 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 
-public class BasicCalculator {
+public class CalculatorController {
 
-	public BasicCalculator() {
+	public CalculatorController() {
 	}
 
 	public void launch() {
