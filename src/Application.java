@@ -1,5 +1,3 @@
-
-
 import controller.CalculatorController;
 
 public class Application {
