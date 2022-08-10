@@ -1,12 +1,12 @@
 
 
-import controller.BasicCalculator;
+import controller.CalculatorController;
 
 public class Main {
 
 	public static void main(String[] args) {
-		BasicCalculator basicCalculator = new BasicCalculator();
-		basicCalculator.launch();
+		CalculatorController calculatorController = new CalculatorController();
+		calculatorController.launch();
 	}
 
 }
