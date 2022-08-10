@@ -1,6 +1,6 @@
 
 
-import calculator.BasicCalculator;
+import controller.BasicCalculator;
 
 public class Main {
 
