@@ -194,7 +194,6 @@ public class CalculatorController {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				textField.setText("");
-
 				for (int i = 0; i < jButtonsNumbers.size(); i++) {
 					jButtonsNumbers.get(i).setEnabled(true);
 				}
@@ -245,7 +244,8 @@ public class CalculatorController {
 					textField.setText("Indetermination");
 				} else {
 					calculatorLogic.compute();
-					textField.setText(String.valueOf(calculatorLogic.getComputation()));
+					String computation = String.valueOf(calculatorLogic.getComputation());
+					textField.setText(computation);
 				}
 
 				for (int i = 0; i < jButtonsNumbers.size(); i++) {
@@ -264,7 +264,7 @@ public class CalculatorController {
 		jButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String numberClicked = jButton.getText().toString();
+				String numberClicked = jButton.getText();
 				calculatorLogic.assignOperand(numberClicked);
 				String currentOperand = calculatorLogic.getCurrentOperand();
 				textField.setText(currentOperand);
@@ -290,7 +290,7 @@ public class CalculatorController {
 					btn9.setEnabled(false);
 					btnCalculate.setEnabled(false);
 				} else {
-					calculatorLogic.setOperator(jButton.getText().toString());
+					calculatorLogic.setOperator(jButton.getText());
 					textField.setText("");
 				}
 
