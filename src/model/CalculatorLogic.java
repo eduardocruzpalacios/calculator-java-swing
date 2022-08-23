@@ -25,9 +25,6 @@ public class CalculatorLogic {
 	}
 
 	public void assignOperand(String operand) {
-		if (this.operand.charAt(this.operand.length() - 1) == '.' && operand.equals(".")) {
-			return;
-		}
 		if (this.computation == 0 || operand.equals("")) {
 			this.operand = operand;
 		} else {
@@ -44,10 +41,9 @@ public class CalculatorLogic {
 		}
 		if (this.operator != null) {
 			this.compute();
-		} else {
-			this.operand = "";
 		}
 		this.operator = operator;
+		this.operand = "";
 	}
 
 	public void compute() {
@@ -76,6 +72,15 @@ public class CalculatorLogic {
 
 	public boolean isEven() {
 		return Double.parseDouble(this.operand) % 2 == 0;
+	}
+
+	public boolean isIndetermination() {
+		return (this.computation != 0) && (this.operand.equals("0"));
+	}
+
+	@Override
+	public String toString() {
+		return "CalculatorLogic [operand=" + operand + ", operator=" + operator + ", computation=" + computation + "]";
 	}
 
 }
