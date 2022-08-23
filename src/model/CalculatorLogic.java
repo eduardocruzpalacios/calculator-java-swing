@@ -78,9 +78,4 @@ public class CalculatorLogic {
 		return (this.computation != 0) && (this.operand.equals("0"));
 	}
 
-	@Override
-	public String toString() {
-		return "CalculatorLogic [operand=" + operand + ", operator=" + operator + ", computation=" + computation + "]";
-	}
-
 }
