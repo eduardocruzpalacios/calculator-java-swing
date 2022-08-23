@@ -75,7 +75,7 @@ public class CalculatorLogic {
 	}
 
 	public boolean isIndetermination() {
-		return (this.computation != 0) && (this.operand.equals("0"));
+		return this.computation != 0 && this.operand.equals("0");
 	}
 
 }
