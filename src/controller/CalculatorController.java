@@ -10,6 +10,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 
+import model.CalculatorLogic;
+
 public class CalculatorController {
 
 	public CalculatorController() {
@@ -58,10 +60,7 @@ public class CalculatorController {
 
 	private JButton btnC;
 
-	private String number1 = "";
-	private String number2 = "";
-	private boolean operationIsDefined = false;
-	private String operator = "";
+	CalculatorLogic calculatorLogic = new CalculatorLogic();
 
 	/**
 	 * @wbp.parser.entryPoint
@@ -179,6 +178,18 @@ public class CalculatorController {
 		}
 	}
 
+	private void setActionListenerToJButtonNumber(JButton jButton) {
+		jButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String numberClicked = jButton.getText();
+				calculatorLogic.assignOperand(numberClicked);
+				String currentOperand = calculatorLogic.getCurrentOperand();
+				textField.setText(currentOperand);
+			}
+		});
+	}
+
 	private void setEventToOperatorsButtons() {
 		jButtonsOperators = new ArrayList<JButton>();
 		jButtonsOperators.add(btnSum);
@@ -190,12 +201,42 @@ public class CalculatorController {
 		}
 	}
 
+	private void setActionListenerToJButtonOperator(JButton jButton) {
+		jButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (calculatorLogic.getCurrentOperand().equals("")) {
+					textField.setText("error");
+					btn0.setEnabled(false);
+					btn1.setEnabled(false);
+					btn2.setEnabled(false);
+					btn3.setEnabled(false);
+					btn4.setEnabled(false);
+					btn5.setEnabled(false);
+					btn6.setEnabled(false);
+					btn7.setEnabled(false);
+					btn8.setEnabled(false);
+					btn9.setEnabled(false);
+					btnCalculate.setEnabled(false);
+				} else {
+					calculatorLogic.setOperator(jButton.getText());
+					textField.setText("");
+				}
+
+				btnIsEven.setEnabled(false);
+				btnSum.setEnabled(false);
+				btnSubtract.setEnabled(false);
+				btnMultiply.setEnabled(false);
+				btnDivide.setEnabled(false);
+			};
+		});
+	}
+
 	private void setEventToCbutton() {
 		btnC.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				textField.setText("");
-
 				for (int i = 0; i < jButtonsNumbers.size(); i++) {
 					jButtonsNumbers.get(i).setEnabled(true);
 				}
@@ -204,23 +245,19 @@ public class CalculatorController {
 				}
 				btnCalculate.setEnabled(true);
 				btnIsEven.setEnabled(true);
-
-				number1 = "";
-				number2 = "";
-				operator = "";
-				operationIsDefined = false;
+				calculatorLogic.reset();
 			}
 		});
 	}
+
 	private void setEventToIsEvenButton() {
 		btnIsEven.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (number1.length() == 0) {
+				if (calculatorLogic.getCurrentOperand().length() == 0) {
 					textField.setText("Hi, no number here!");
 				} else {
-					float num = Float.parseFloat(number1);
-					if (num % 2 == 0) {
+					if (calculatorLogic.isEven()) {
 						textField.setText("Even");
 					} else {
 						textField.setText("Odd");
@@ -243,32 +280,15 @@ public class CalculatorController {
 		btnCalculate.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (number1.length() == 0 || number2.length() == 0) {
+				if (calculatorLogic.getCurrentOperand().length() == 0) {
 					textField.setText("error");
 					btnIsEven.setEnabled(false);
-				} else if (number2.equals("0")) {
+				} else if (calculatorLogic.isIndetermination()) {
 					textField.setText("Indetermination");
 				} else {
-					float num1 = Float.parseFloat(number1);
-					float num2 = Float.parseFloat(number2);
-					float result = 0f;
-					switch (operator) {
-					case "+":
-						result = num1 + num2;
-						break;
-					case "-":
-						result = num1 - num2;
-						break;
-					case "*":
-						result = num1 * num2;
-						break;
-					case "/":
-						result = num1 / num2;
-						break;
-					default:
-						break;
-					}
-					textField.setText(String.valueOf(result));
+					calculatorLogic.compute();
+					String computation = String.valueOf(calculatorLogic.getComputation());
+					textField.setText(computation);
 				}
 
 				for (int i = 0; i < jButtonsNumbers.size(); i++) {
@@ -280,54 +300,6 @@ public class CalculatorController {
 
 				btnCalculate.setEnabled(false);
 			}
-		});
-	}
-
-	private void setActionListenerToJButtonNumber(JButton jButton) {
-		jButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if (!operationIsDefined) {
-					number1 += jButton.getText().toString();
-					textField.setText(number1);
-				} else {
-					number2 += jButton.getText().toString();
-					textField.setText(number2);
-				}
-			}
-		});
-	}
-
-	private void setActionListenerToJButtonOperator(JButton jButton) {
-		jButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				operator = jButton.getText().toString();
-
-				if (number1.length() == 0) {
-					textField.setText("error");
-					btn0.setEnabled(false);
-					btn1.setEnabled(false);
-					btn2.setEnabled(false);
-					btn3.setEnabled(false);
-					btn4.setEnabled(false);
-					btn5.setEnabled(false);
-					btn6.setEnabled(false);
-					btn7.setEnabled(false);
-					btn8.setEnabled(false);
-					btn9.setEnabled(false);
-					btnCalculate.setEnabled(false);
-				} else {
-					textField.setText("");
-					operationIsDefined = true;
-				}
-
-				btnIsEven.setEnabled(false);
-				btnSum.setEnabled(false);
-				btnSubtract.setEnabled(false);
-				btnMultiply.setEnabled(false);
-				btnDivide.setEnabled(false);
-			};
 		});
 	}
 
