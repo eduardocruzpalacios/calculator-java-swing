@@ -1,4 +1,4 @@
-# Calculator with Java Swing
+# Calculator
 Calculator built with JDK 11.0.12, Java Swing & [Window Builder bi-directional Java GUI designer](https://www.eclipse.org/windowbuilder/).
 ## Functionality
 - Sum 2 numbers
