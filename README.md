@@ -1,7 +1,6 @@
 # Calculator with Java Swing
 Calculator built with JDK 11.0.12, Java Swing & [Window Builder bi-directional Java GUI designer](https://www.eclipse.org/windowbuilder/).
 ## Functionality
-Calculator that allows:
 - Sum 2 numbers
 - Subtract 1 number from another
 - Multiply 2 numbers
